@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "...clearing database"
+
+Pet.destroy_all
+
+puts "...Creating pets"
+50.times do
+  Pet.create!(
+    name: Faker::GreekPhilosophers.name,
+    address: Faker::Address.street_address,
+    species: Pet::SPECIES.sample,
+    date_found: Date.today - rand(1..10)
+    )
+end
+puts "... created #{Pet.count} pets"
